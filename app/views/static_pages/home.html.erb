@@ -1,4 +1,11 @@
-<%= link_to 'サインイン','/users/sign_in',method: :get%>
-<%= link_to 'ユーザー登録','users/sign_up',method: :get%>
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to "Edit profile", edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "サインイン", new_user_session_path, :class => 'navbar-link'  %> |
+  <%= link_to "ユーザー登録", new_user_registration_path, :class => 'navbar-link'  %> 
+<% end %>
 <hr>
 <p>HOME PAGES</p>
+<p class="navbar-text pull-right">
